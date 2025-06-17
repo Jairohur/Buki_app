@@ -36,30 +36,52 @@
       <% end %>
     </div>
     <!-- Buttons -->
-    <%# <div class="container-fluid d-flex justify-content-between px-4 my-5">
-      <button data-action="flipbook#previous"
+    <div class="container-fluid d-flex justify-content-between px-4 my-5"
+       style="position: absolute; top: 45%; left: 0; right: 0; z-index: 100;">
+    <!-- Back button -->
+      <button id="prev-page-btn"
+          data-action="flipbook#previous"
           class="rounded-pill btn btn-outline-primary bg-white"
           onmousedown="this.classList.remove('bg-white')"
           onmouseup="this.classList.add('bg-white')"
           onmouseleave="this.classList.add('bg-white')">
-        &lt;&lt; Previous page
+        <i class="fas fa-arrow-left"></i>
       </button>
-      <button data-action="flipbook#next"
+      <script>
+        document.addEventListener('keydown', function(event) {
+          if (event.key === "ArrowLeft") {
+        const btn = document.getElementById('prev-page-btn');
+        if (btn) btn.click();
+          }
+        });
+      </script>
+      </button>
+        <!-- Next button -->
+      <button id="next-page-btn"
+          data-action="flipbook#next"
           class="rounded-pill btn btn-outline-primary bg-white"
           onmousedown="this.classList.remove('bg-white')"
           onmouseup="this.classList.add('bg-white')"
           onmouseleave="this.classList.add('bg-white')">
-        Next page &gt;&gt;
+        <i class="fas fa-arrow-right"></i>
       </button>
+      <script>
+        document.addEventListener('keydown', function(event) {
+          if (event.key === "ArrowRight") {
+        const btn = document.getElementById('next-page-btn');
+        if (btn) btn.click();
+          }
+        });
+      </script>
     </div>
-  </div> %>
+  </div>
   <!-- Language Badges -->
   <div class="bg-light border-top px-4 pt-2 pb-4" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 1030; display: flex">
     <%= render "pages/languages_in_page", book: @book, page: @page, current_user: current_user %>
     <!-- Return Button -->
-    <div class="d-flex justify-content-end flex-grow-1">
+    <div class="d-flex justify-content-end flex-grow-1" style="padding: 8px;">
       <%= link_to "Return to Book", book_path(@book),
-          class: "rounded-pill btn btn-outline-primary custom-button" %>
+        class: "rounded-pill btn btn-outline-primary custom-button" %>
     </div>
   </div>
 </div>

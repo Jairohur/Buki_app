@@ -6,6 +6,7 @@
         <p>Home</p>
       <% end %>
     </div>
+    <%= audio_tag("shine.mp3", data: { click_sound_target: 'audio' }) %>
     <div class="navbar-link">
       <%= link_to favorites_path, class: "nav-link text-center #{ "active" if params[:controller] == "favorites" && params[:action] == "index" }" do %>
         <i class="fa-solid fa-heart" style="font-size: 2rem;"></i>
